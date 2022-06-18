@@ -60,7 +60,6 @@ func main() {
 func userInput(args []string) ([9]int, [12]int) {
 	topcolorsint := [9]int{}
 	sidecolorsint := [12]int{}
-	si
 
 	for i := 0; i < 4; i++ {
 		if i < 3 {
