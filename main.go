@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"image/color"
+
 	"github.com/llgcode/draw2d/draw2dsvg"
 
 	"github.com/M3dry/rubiksImg/draw"
@@ -24,7 +26,10 @@ func main() {
 	                            {50, 50, 50, 0xFF},    {29,  29,  29, 0xFF}} // empty side[6], base[7]
 	topcolorsint, sidecolorsint := user.Input() // get user inputted colors into vars
 
-	draw.CubeLL(gc, topcolorsint, sidecolorsint, cubecolors) // Draw last layer
+	if err := draw.CubeLL(gc, topcolorsint, sidecolorsint, cubecolors); err != nil { // Draw last layer 
+		fmt.Fprintf(os.Stderr, "Error: %s\n", err)
+		return
+	}
 	
 	// save svg to a file defined by user
 	gc.Restore()

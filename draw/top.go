@@ -1,12 +1,18 @@
 package draw
 
 import (
+	"errors"
 	"image/color"
+
 	"github.com/llgcode/draw2d"
 	"github.com/llgcode/draw2d/draw2dkit"
 )
 
-func CubeLL(gc draw2d.GraphicContext, topcolors [9]int, sidecolors [12]int, colors [8]color.RGBA) {
+func CubeLL(gc draw2d.GraphicContext, topcolors [9]int, sidecolors [12]int, colors [8]color.RGBA) error {
+	if twoColors(topcolors, sidecolors) {
+		return errors.New("Two or more same colors in one piece")
+	}
+
 	gc.MoveTo(0, 0)
 	gc.Fill()
 
@@ -95,4 +101,6 @@ func CubeLL(gc draw2d.GraphicContext, topcolors [9]int, sidecolors [12]int, colo
 			}
 		}
 	}
+
+	return nil
 }
